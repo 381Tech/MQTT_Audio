@@ -164,15 +164,33 @@ void MQTT_callback(char* topic, byte* payload, unsigned int length)
     }
 
     // // Find element in JSON
-     String dudge = json_doc["STATUS"];
-     Serial.println(dudge);
-     if( dudge == "BELL" ){
-        Serial.println("MUSIC START");
+    String dudge = json_doc["STATUS"];
+    Serial.println(dudge);
+    if( dudge == "BELL" ){
+        Serial.println("MUSIC START:HOT LIMIT");
         myDFPlayer.playMp3Folder(1); //TrackNo.1 Hotlimit
-            }else if ( dudge == "BELLSTOP"){
-                Serial.println("MOUIKKAI NEMASU");
-                myDFPlayer.pause();  //pause the mp3
-    }
+      }
+    if( dudge == "BELL2" ){
+        Serial.println("MUSIC START:ULTRA SOUL");
+        myDFPlayer.playMp3Folder(2); //TrackNo.2 ultra soul
+      }
+    if( dudge == "BELL3" ){
+        Serial.println("MUSIC START:ATSUMARE PARIPI!");
+        myDFPlayer.playMp3Folder(3); //TrackNo.3 あつまれパーリーピーポー
+      }
+    if( dudge == "BELL4"){
+        Serial.println("MUSIC START:ZEN ZEN ZEN SE");
+        myDFPlayer.playMp3Folder(4); //TrackNo.4 前前々世
+      }
+    if ( dudge == "BELLSTART"){
+        Serial.println("▼再度攻撃を仕掛けられた！");
+        myDFPlayer.start();          //再生停止
+      }
+    if ( dudge == "BELLSTOP"){
+        Serial.println("▼操作者から許された！");
+        myDFPlayer.pause();          //再生停止
+      }
+
 }
 /*
 void receive_json_doc(){
